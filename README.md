@@ -1,6 +1,6 @@
 ExAerospike
 ===========
-this is to be updated. for now ->
+
 
 this is light wrapper around aerospike erlang driver      
       
