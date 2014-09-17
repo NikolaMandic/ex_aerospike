@@ -1,0 +1,1 @@
+%{"aerospike": {:git, "https://github.com/NikolaMandic/aerospikeErlangClient.git", "fae3d1fbbb56b0c42281d0242cb55bc8f513a6fd", []}}
