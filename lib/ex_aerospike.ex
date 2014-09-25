@@ -39,8 +39,13 @@ defmodule ExAerospike do
   def get(conn,key,column)do
     a = conn 
     rr = :aerospike.get(a.conn, a.namespace, a.set, key, [column], 0)
+    case rr do
+      {:citrusleaf_error,_}->
+        rr
+      _ ->
     [{_,v}]=rr
     v
+    end
   end
   def get(conn,key)do
     a = conn
