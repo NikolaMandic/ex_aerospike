@@ -1,29 +1,64 @@
-ExAerospike
-===========
+### ExAerospike [![Hex.pm](https://img.shields.io/hexpm/v/exredis.svg)](https://hex.pm/packages/ex_aerospike)
 
+---
 
-this is light wrapper around aerospike erlang driver      
-      
-usage       
+A simple wrapper for Aerospike's Erlang driver
 
-connect         
-         db=ExAerospike         
-         con = db.connect        
-	 con = db.connect 'ip','port'         
-         db.close conn       
+---
 
-options      
-         con = db.namespace con, 'namespace'         
-         con = db.set con, 'aerospikeSetName'         
+### Installation
 
-read     
-         db.get con, 'key','5'         
-         db.get con, 'key'         
+---
 
-write     
-         db.write con, 'key', 'bin', 'value'         
-         db.write con, 'key',['1': '2','3': '4','5': '6']         
+Add the following tuple to your dependencies list
+```elixir
+{:ex_aerospike, ">= 0.0.1"}
+```
 
-del     
-         db.delete con, 'key'         
-         
+---
+
+### Usage
+
+__Connecting to an Aerospike database__
+```elixir
+client = ExAerospike.connect('127.0.0.1', 6000)
+```
+
+__Disconnecting__
+```elixir
+client |> ExAerospike.close
+```
+
+__Changing the namespace__
+```elixir
+client |> ExAerospike.namespace('myNamespace')
+```
+
+__Changing the set__
+```elixir
+client |> ExAerospike.set('mySetName')
+```
+
+__Fetching a bin from a key__
+```elixir
+client |> ExAerospike.get('key', 'binName')
+```
+
+__Fetching all values from a key__
+```elixir
+client |> ExAerospike.get('key')
+```
+
+__Writing a record__
+```elixir
+client |> ExAerospike.write('key', 'bin', 'value')
+# or
+client |> ExAerospike.write('key', ['bin': 'value'])
+# for multiple bins
+client |> ExAerospike.write('key', ['bin': 'value', 'anotherBin': 'another value'])
+```
+
+__Deleting a record__
+```elixir
+client |> ExAerospike.delete('key')
+```
