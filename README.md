@@ -1,4 +1,4 @@
-### ExAerospike [![Hex.pm](https://img.shields.io/hexpm/v/exredis.svg)](https://hex.pm/packages/ex_aerospike)
+### ExAerospike [![Hex.pm](https://img.shields.io/hexpm/v/ex_aerospike.svg)](https://hex.pm/packages/ex_aerospike)
 
 ---
 
