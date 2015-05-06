@@ -15,37 +15,28 @@ defmodule ExAerospike do
     %ExAerospike{conn: connectId}
   end
 
-  def close(conn) do
-    a = conn
-    :aerospike.shutdown(a.conn)
+  def close(client) do
+    :aerospike.shutdown(client.conn)
   end
 
-  def namespace(conn, namespace) do
-    %{conn|namespace: namespace}
+  def namespace(client, namespace) do
+    %{client|namespace: namespace}
   end
 
-  def set(conn, set) do
-    %{conn|set: set}
+  def set(client, set) do
+    %{client|set: set}
   end
   
-  def write(conn, key, records) do
-    a = conn
-    writeResult = :aerospike.put(a.conn,
-                                 a.namespace,
-                                 a.set,
-                                 key,
-                                 records,
-                                 0)
+  def write(client, key, records) do
+    :aerospike.put(client.conn, client.namespace, client.set, key, records, 0)
   end
 
-  def write(conn, key, column, val) do
-    a = conn
-    writeResult = :aerospike.put(a.conn, a.namespace, a.set, key, [{column, val}], 0)
+  def write(client, key, column, val) do
+    :aerospike.put(client.conn, client.namespace, client.set, key, [{column, val}], 0)
   end
 
-  def get(conn, key, column) do
-    a = conn 
-    rr = :aerospike.get(a.conn, a.namespace, a.set, key, [column], 0)
+  def get(client, key, column) do
+    rr = :aerospike.get(client.conn, client.namespace, client.set, key, [column], 0)
     case rr do
       {:citrusleaf_error, _} ->
         rr
@@ -55,13 +46,11 @@ defmodule ExAerospike do
     end
   end
 
-  def get(conn, key) do
-    a = conn
-    rr = :aerospike.getAll(a.conn, a.namespace, a.set, key, 0)
-    rr
+  def get(client, key) do
+    :aerospike.getAll(client.conn, client.namespace, client.set, key, 0)
   end
 
-  def delete(conn, key) do
-    writeResult = :aerospike.delete(conn.conn, conn.namespace, conn.set, key, 0)
+  def delete(client, key) do
+    :aerospike.delete(client.conn, client.namespace, client.set, key, 0)
   end
 end
