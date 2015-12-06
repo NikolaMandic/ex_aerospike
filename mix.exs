@@ -26,7 +26,7 @@ defmodule ExAerospike.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     [
-      {:aerospike,git: "https://github.com/NikolaMandic/aerospikeErlangClient.git",app: false}
+      {:aerospike, git: "https://github.com/NikolaMandic/aerospikeErlangClient.git", app: false}
     ]
   end
 end
